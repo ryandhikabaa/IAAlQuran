@@ -21,7 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText username, email, pw;
     Button btn_signup;
     String text_username,text_email, text_pw;
-    private static final String MY_PREFS_NAME = "register";
+    private static final String MY_PREFS_NAME = "user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }else if (text_username.length()==0){
                     username.setError("Enter username");
                 }else {
-                    SharedPreferences sharedPreferences = getSharedPreferences("register",MODE_PRIVATE);
+                    SharedPreferences sharedPreferences = getSharedPreferences("user",MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("username", username.getText().toString());
                     editor.putString("email", email.getText().toString());

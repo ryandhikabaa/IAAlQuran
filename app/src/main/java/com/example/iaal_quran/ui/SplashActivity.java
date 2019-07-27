@@ -2,6 +2,7 @@ package com.example.iaal_quran.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -75,25 +76,24 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-//                SharedPreferences prefs = getSharedPreferences("register", MODE_PRIVATE);
-//
-//                String restoredText = prefs.getString("user", "");
-//                String name = prefs.getString("user", "");
-//                if (restoredText == ""){
-//                    //login
-//                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                    startActivity(intent);
-//                }
-//                else {
-//                    //mainmenu
-//                    Intent intent1 = new Intent(getApplicationContext(), MainMenu.class);
-//                    startActivity(intent1);
-//                }
+                SharedPreferences prefs = getSharedPreferences("user", MODE_PRIVATE);
 
-                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-                mProgress.show();
-                startActivity(intent);
-                finish();
+                String username = prefs.getString("email", "");
+                String name = prefs.getString("user", "");
+                if (username == ""){
+                    //login
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    //mainmenu
+
+                    Intent intent1 = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent1);
+                    finish();
+                }
+
             }
         },2000);
     }

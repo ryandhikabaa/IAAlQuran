@@ -1,6 +1,7 @@
 package com.example.iaal_quran.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,8 +18,10 @@ import java.text.SimpleDateFormat;
 public class LoginActivity extends AppCompatActivity {
 
     TextView tdate,ttime,nameapps,infoapps;
-    EditText etusername, etpassword;
+    EditText etemail, etpassword;
     Button button_signin;
+    EditText username, email, pw;
+    String text_username,text_email, text_pw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
         tdate = (TextView) findViewById(R.id.date);
         ttime = (TextView) findViewById(R.id.time);
-        etusername = (EditText) findViewById(R.id.et_email);
+        etemail = (EditText) findViewById(R.id.et_email);
         etpassword = (EditText) findViewById(R.id.et_pw);
         button_signin = (Button) findViewById(R.id.btn_lg);
         nameapps = (TextView) findViewById(R.id.nameapps);
@@ -70,9 +73,31 @@ public class LoginActivity extends AppCompatActivity {
         tvSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goLogin = new Intent(LoginActivity.this, HomeActivity.class);
+                Intent goLogin = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(goLogin);
                 finish();
+            }
+        });
+
+        button_signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                text_email = etemail.getText().toString();
+                text_pw = etpassword.getText().toString();
+                if (text_email.length()==0) {
+                    etemail.setError("Enter email");
+                } else if (text_pw.length()==0) {
+                    etpassword.setError("Enter password");
+                }else {
+                    SharedPreferences sharedPreferences = getSharedPreferences("user",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("email", etemail.getText().toString());
+                    editor.putString("pw", etpassword.getText().toString());
+                    editor.commit();
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
