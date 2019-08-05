@@ -40,12 +40,6 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
         holder.tv_nomor.setText(surah.getNomor());//
         holder.tv_nama.setText(surah.getNama());//
         holder.tv_arti.setText(surah.getArti());//
-//        holder.tv_asma.setText(surah.getAsma());//
-//        holder.tv_ayat.setText(surah.getAyat());//
-//        holder.tv_type.setText(surah.getType());//
-//        holder.tv_urut.setText(surah.getUrut());//
-//        holder.tv_keterangan.setText(surah.getKeterangan());//
-
     }
 
     @Override

@@ -42,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         rvSurah = findViewById(R.id.recyclerView );
+        swipeLayout = findViewById(R.id.swipe_container);
 
         mProgress = new ProgressDialog(this);
         mProgress.setTitle("Processing...");
@@ -49,16 +50,15 @@ public class HomeActivity extends AppCompatActivity {
         mProgress.setCancelable(false);
         mProgress.setIndeterminate(true);
 
-        swipeLayout = findViewById(R.id.swipe_container);
-
-//        mProgress.show();
+        mProgress.show();
         fetchSurah();
-//        mProgress.dismiss();
+
 
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 // Your code here
+                surahList.clear();
                 fetchSurah();
                 // To keep animation for 4 seconds
                 new Handler().postDelayed(new Runnable() {
@@ -104,6 +104,7 @@ public class HomeActivity extends AppCompatActivity {
                                 item.setKeterangan(hasil.getString("keterangan"));
                                 surahList.add(item);
                             }
+                            mProgress.dismiss();
                             surahAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
