@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("email", etemail.getText().toString());
                     editor.putString("pw", etpassword.getText().toString());
                     editor.commit();
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                     startActivity(intent);
                     finish();
                 }

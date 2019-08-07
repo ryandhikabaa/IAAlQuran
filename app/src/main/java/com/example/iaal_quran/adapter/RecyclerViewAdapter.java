@@ -47,6 +47,16 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
         return mData.size();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return (long) position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_nomor , tv_nama, tv_asma, tv_name, tv_start, tv_ayat, tv_type, tv_urut, tv_arti, tv_keterangan;

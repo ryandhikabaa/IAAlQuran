@@ -89,7 +89,7 @@ public class SplashActivity extends AppCompatActivity {
                 else {
                     //mainmenu
 
-                    Intent intent1 = new Intent(getApplicationContext(), HomeActivity.class);
+                    Intent intent1 = new Intent(getApplicationContext(), AllListActivity.class);
                     startActivity(intent1);
                     finish();
                 }

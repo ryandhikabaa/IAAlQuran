@@ -1,8 +1,6 @@
 package com.example.iaal_quran.ui;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +13,6 @@ import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.iaal_quran.Constants;
 import com.example.iaal_quran.R;
@@ -29,20 +26,32 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 
+public class AllListActivity extends AppCompatActivity {
+
+    private static final String TAG = AllListActivity.class.getSimpleName();
     private RecyclerView rvSurah;
     private RecyclerViewAdapter surahAdapter;
     private List<Surah> surahList = new ArrayList<>();
     private ProgressDialog mProgress;
     SwipeRefreshLayout swipeLayout;
+    private Realm realm;
+    String data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        rvSurah = findViewById(R.id.recyclerView );
+        rvSurah = findViewById(R.id.recyclerView);
         swipeLayout = findViewById(R.id.swipe_container);
+
+        //Set up Realm
+        Realm.init(AllListActivity.this);
+        RealmConfiguration configuration = new RealmConfiguration.Builder().build();
+        realm = Realm.getInstance(configuration);
 
         mProgress = new ProgressDialog(this);
         mProgress.setTitle("Processing...");
@@ -50,8 +59,11 @@ public class HomeActivity extends AppCompatActivity {
         mProgress.setCancelable(false);
         mProgress.setIndeterminate(true);
 
+        if (realm == null)
+            realm = Realm.getDefaultInstance();
+
         mProgress.show();
-        fetchSurah();
+        fetchCustDataFromDb();
 
 
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -59,10 +71,11 @@ public class HomeActivity extends AppCompatActivity {
             public void onRefresh() {
                 // Your code here
                 surahList.clear();
-                fetchSurah();
+                fetchCustDataFromDb();
                 // To keep animation for 4 seconds
                 new Handler().postDelayed(new Runnable() {
-                    @Override public void run() {
+                    @Override
+                    public void run() {
                         // Stop animation (This will be after 3 seconds)
                         swipeLayout.setRefreshing(false);
                     }
@@ -74,14 +87,14 @@ public class HomeActivity extends AppCompatActivity {
         setupRecyclerSurah();
     }
 
-    private void setupRecyclerSurah(){
+    private void setupRecyclerSurah() {
         surahAdapter = new RecyclerViewAdapter(this, surahList);
         rvSurah.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvSurah.setHasFixedSize(true);
         rvSurah.setAdapter(surahAdapter);
     }
 
-    private void fetchSurah() {
+    private void fetchSurahApi() {
         AndroidNetworking.get(Constants.BASE_URL)
                 .setTag("hasil")
                 .setPriority(Priority.LOW)
@@ -102,8 +115,16 @@ public class HomeActivity extends AppCompatActivity {
                                 item.setArti(hasil.getString("arti"));
                                 item.setUrut(hasil.getString("urut"));
                                 item.setKeterangan(hasil.getString("keterangan"));
+                                /** save to realm */
+
                                 surahList.add(item);
                             }
+                            realm.executeTransaction(new Realm.Transaction() {
+                                @Override
+                                public void execute(Realm _realm) {
+                                    _realm.insertOrUpdate(surahList);
+                                }
+                            });
                             mProgress.dismiss();
                             surahAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
@@ -114,10 +135,37 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         Log.e("", "onError: " + anError.getErrorBody());
-                        Toast.makeText(HomeActivity.this, Constants.EROR, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AllListActivity.this, Constants.EROR, Toast.LENGTH_SHORT).show();
                     }
                 });
 
 
+    }
+
+    private void fetchCustDataFromDb() {
+        surahList.clear();
+        try {
+            RealmResults<Surah> surah = realm.where(Surah.class)
+//                    .equalTo("nama", "Al baqaroh")
+
+                    .findAll();
+            if (surah.size() <= 0) {
+                fetchSurahApi();
+                Log.e(TAG, "fetchCustDataFromApi: ");
+            } else {
+                Log.e(TAG, "fetchCustDataFromDb: " + surah.size());
+                this.surahList.addAll(surah);
+                mProgress.dismiss();
+                this.surahAdapter.notifyDataSetChanged();
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "fetchCustDataFromDb: " + e.getLocalizedMessage());
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 }

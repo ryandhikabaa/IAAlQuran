@@ -2,8 +2,10 @@ package com.example.iaal_quran.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-public class Surah implements Parcelable {
+public class Surah extends RealmObject implements Parcelable{
     private String nomor;
     private String nama;
     private String asma;
