@@ -30,7 +30,7 @@ public class DashboardActivity extends AppCompatActivity {
     TextView tdate,ttime,tvUsername;
     private SharedPreferences preferences;
     private ImageView ivLogout;
-    private CardView c_a, c_b, c_all_surah;
+    private CardView c_mekah, c_madinah, c_all_surah;
     private static final int TIME_LIMIT = 1500;
     private static long backPressed;
     private RecyclerViewAdapter surahAdapter;
@@ -46,8 +46,8 @@ public class DashboardActivity extends AppCompatActivity {
         ttime = (TextView) findViewById(R.id.time);
         tvUsername = findViewById(R.id.tv_username);
         ivLogout = findViewById(R.id.iv_logout);
-        c_a = findViewById(R.id.card_a);
-        c_b = findViewById(R.id.card_b);
+        c_mekah = findViewById(R.id.card_mekah);
+        c_madinah = findViewById(R.id.card_madinah);
         c_all_surah = findViewById(R.id.card_all_surah);
 
         preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
@@ -109,6 +109,22 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardActivity.this, AllListActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        c_mekah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, MekahActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        c_madinah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, MadinahActivity.class);
                 startActivity(intent);
 
             }

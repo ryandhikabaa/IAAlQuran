@@ -44,7 +44,7 @@ public class AllListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_alllist);
         rvSurah = findViewById(R.id.recyclerView);
         swipeLayout = findViewById(R.id.swipe_container);
 
