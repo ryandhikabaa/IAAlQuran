@@ -1,5 +1,6 @@
 package com.example.iaal_quran.ui;
 
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,19 +12,23 @@ import com.example.iaal_quran.R;
 import com.example.iaal_quran.model.Surah;
 
 public class DetailActivity extends AppCompatActivity {
-    TextView tv_nomor, tv_NS, tv_asma, tv_arti, tv_JmlAyat,tv_TurunSurat,tv_urutan,tv_keterangan  ;
+    TextView tv_nomor, tv_NS, tv_asma, tv_arti, tv_JmlAyat,tv_TurunSurat,tv_urutan,tv_keterangan, title_surah , title_asma ;
     private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        toolbar = findViewById(R.id.tl_detail);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Detail Surah ");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        toolbar = findViewById(R.id.tl_detail);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setTitle("Detail Surah ");
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingtoolbar_id);
+        collapsingToolbarLayout.setTitleEnabled(true);
 
         //inisialisasi
+        title_surah =  findViewById(R.id.title_surah);
+        title_asma =  findViewById(R.id.title_asma);
         tv_nomor =  findViewById(R.id.tv_nomor);
         tv_NS =  findViewById(R.id.tv_surat);
         tv_asma =  findViewById(R.id.tv_asma);
@@ -53,6 +58,8 @@ public class DetailActivity extends AppCompatActivity {
             tv_TurunSurat.setText(turun);
             tv_urutan.setText(urutanwahyu);
             tv_keterangan.setText(keterangan);
+            title_surah.setText(nama);
+            title_asma.setText(asma);
         }
     }
 
