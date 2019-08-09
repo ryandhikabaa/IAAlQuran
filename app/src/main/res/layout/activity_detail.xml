@@ -1,64 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/swipe_movie_nowplaying"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".movie.Detail_nowplaying"
-        android:background="#303030">
-
+        android:background="#303030"
+        tools:context=".movie.Detail_nowplaying">
 
 
         <android.support.design.widget.AppBarLayout
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:id="@+id/appbarlayout_id"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:id="@+id/appbarlayout_id">
+            android:layout_height="250dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsingtoolbar_id"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/collapsingtoolbar_id"
-                app:layout_scrollFlags="exitUntilCollapsed|scroll"
                 app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleMarginStart="48dp"
                 app:expandedTitleMarginEnd="64dp"
-                >
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="exitUntilCollapsed|scroll">
 
                 <android.support.v7.widget.Toolbar
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    android:theme="@style/ThemeOverlay.AppCompat.Light">
-                </android.support.v7.widget.Toolbar>
+                    android:theme="@style/ThemeOverlay.AppCompat.Light"
+                    app:layout_collapseMode="pin"></android.support.v7.widget.Toolbar>
 
                 <TextView
                     android:id="@+id/title_surah"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Nama Surah"
-                    android:textSize="30sp"
-                    android:gravity="bottom"
                     android:layout_marginBottom="12dp"
+                    android:gravity="bottom"
                     android:paddingLeft="15dp"
-                    android:textColor="#fff" />
+                    android:text="Nama Surah"
+                    android:textColor="#fff"
+                    android:textSize="30sp" />
 
 
-                    <TextView
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="30sp"
-                        android:textColor="@color/white"
-                        android:id="@+id/title_asma"/>
-
-
+                <TextView
+                    android:id="@+id/title_asma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
 
 
             </android.support.design.widget.CollapsingToolbarLayout>
@@ -69,7 +63,7 @@
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="16dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -79,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:orientation="vertical"
+                android:layout_marginBottom="40dp"
                 android:padding="10dp">
 
                 <LinearLayout
@@ -98,10 +93,10 @@
 
                     <TextView
                         android:id="@+id/tv_nomor"
-                        android:textColor="@android:color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_name" />
+                        android:text="@string/app_name"
+                        android:textColor="@android:color/white" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -121,10 +116,10 @@
 
                     <TextView
                         android:id="@+id/tv_surat"
-                        android:textColor="@android:color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_name" />
+                        android:text="@string/app_name"
+                        android:textColor="@android:color/white" />
 
                 </LinearLayout>
 
@@ -145,11 +140,11 @@
 
                     <TextView
                         android:id="@+id/tv_asma"
-                        android:textSize="22sp"
-                        android:textColor="@android:color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_name" />
+                        android:text="@string/app_name"
+                        android:textColor="@android:color/white"
+                        android:textSize="22sp" />
 
                 </LinearLayout>
 
@@ -170,10 +165,10 @@
 
                     <TextView
                         android:id="@+id/tv_arti"
-                        android:textColor="@android:color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_name" />
+                        android:text="@string/app_name"
+                        android:textColor="@android:color/white" />
 
                 </LinearLayout>
 
@@ -194,10 +189,10 @@
 
                     <TextView
                         android:id="@+id/tv_jumlah_ayat"
-                        android:textColor="@android:color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_name" />
+                        android:text="@string/app_name"
+                        android:textColor="@android:color/white" />
 
                 </LinearLayout>
 
@@ -218,10 +213,10 @@
 
                     <TextView
                         android:id="@+id/tv_turun_surat"
-                        android:textColor="@android:color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_name" />
+                        android:text="@string/app_name"
+                        android:textColor="@android:color/white" />
 
                 </LinearLayout>
 
@@ -242,10 +237,10 @@
 
                     <TextView
                         android:id="@+id/tv_urutanwahyu"
-                        android:textColor="@android:color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_name" />
+                        android:text="@string/app_name"
+                        android:textColor="@android:color/white" />
 
                 </LinearLayout>
 
@@ -266,15 +261,14 @@
 
                     <TextView
                         android:id="@+id/tv_keterangan"
-                        android:textColor="@android:color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_name" />
+                        android:text="@string/app_name"
+                        android:textColor="@android:color/white" />
 
                 </LinearLayout>
 
             </LinearLayout>
-
 
 
         </android.support.v4.widget.NestedScrollView>

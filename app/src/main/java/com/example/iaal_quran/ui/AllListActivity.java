@@ -1,13 +1,21 @@
 package com.example.iaal_quran.ui;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -39,7 +47,6 @@ public class AllListActivity extends AppCompatActivity {
     private ProgressDialog mProgress;
     SwipeRefreshLayout swipeLayout;
     private Realm realm;
-    String data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +71,6 @@ public class AllListActivity extends AppCompatActivity {
 
         mProgress.show();
         fetchCustDataFromDb();
-
 
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -115,8 +121,6 @@ public class AllListActivity extends AppCompatActivity {
                                 item.setArti(hasil.getString("arti"));
                                 item.setUrut(hasil.getString("urut"));
                                 item.setKeterangan(hasil.getString("keterangan"));
-                                /** save to realm */
-
                                 surahList.add(item);
                             }
                             realm.executeTransaction(new Realm.Transaction() {
@@ -135,7 +139,9 @@ public class AllListActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         Log.e("", "onError: " + anError.getErrorBody());
-                        Toast.makeText(AllListActivity.this, Constants.EROR, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AllListActivity.this, Constants.EROR_DATAREALM_NULL, Toast.LENGTH_SHORT).show();
+                        buildDialogrealnull(AllListActivity.this).show();
+                        mProgress.dismiss();
                     }
                 });
 
@@ -146,8 +152,6 @@ public class AllListActivity extends AppCompatActivity {
         surahList.clear();
         try {
             RealmResults<Surah> surah = realm.where(Surah.class)
-//                    .equalTo("nama", "Al baqaroh")
-
                     .findAll();
             if (surah.size() <= 0) {
                 fetchSurahApi();
@@ -168,4 +172,18 @@ public class AllListActivity extends AppCompatActivity {
         super.onDestroy();
         realm.close();
     }
+
+    public AlertDialog.Builder buildDialogrealnull(Context c) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setTitle("No Internet Connection");
+        builder.setMessage("Data offline belum diunduh, pastikan anda terkoneksi dengan internet dan swipe refresh");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        return builder;
+    }
+
 }

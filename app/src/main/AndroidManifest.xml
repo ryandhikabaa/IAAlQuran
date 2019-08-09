@@ -3,6 +3,8 @@
     package="com.example.iaal_quran">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".realm.MyApplication"
@@ -15,17 +17,18 @@
         <activity android:name=".ui.MadinahActivity"></activity>
         <activity android:name=".ui.MekahActivity" />
         <activity android:name=".ui.DashboardActivity">
+        </activity>
+        <activity android:name=".ui.DetailActivity" />
+        <activity android:name=".ui.AllListActivity" />
+        <activity android:name=".ui.RegisterActivity" />
+        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.DetailActivity" />
-        <activity android:name=".ui.AllListActivity" />
-        <activity android:name=".ui.RegisterActivity" />
-        <activity android:name=".ui.LoginActivity" />
-        <activity android:name=".ui.SplashActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

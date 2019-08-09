@@ -1,8 +1,11 @@
 package com.example.iaal_quran.ui;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -135,7 +138,8 @@ public class MekahActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         Log.e("", "onError: " + anError.getErrorBody());
-                        Toast.makeText(MekahActivity.this, Constants.EROR, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MekahActivity.this, Constants.EROR_DATAREALM_NULL, Toast.LENGTH_SHORT).show();
+                        buildDialogrealnull(MekahActivity.this).show();
                     }
                 });
 
@@ -166,5 +170,18 @@ public class MekahActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
+    }
+
+    public AlertDialog.Builder buildDialogrealnull(Context c) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setTitle("No Internet Connection");
+        builder.setMessage("Data offline belum diunduh, pastikan anda terkoneksi dengan internet dan swipe refresh");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        return builder;
     }
 }
