@@ -20,21 +20,20 @@ public class LoginActivity extends AppCompatActivity {
     TextView tdate,ttime,nameapps,infoapps;
     EditText etemail, etpassword;
     Button button_signin;
-    EditText username, email, pw;
-    String text_username,text_email, text_pw;
+    String text_email, text_pw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        tdate = (TextView) findViewById(R.id.date);
-        ttime = (TextView) findViewById(R.id.time);
-        etemail = (EditText) findViewById(R.id.et_email);
-        etpassword = (EditText) findViewById(R.id.et_pw);
-        button_signin = (Button) findViewById(R.id.btn_lg);
-        nameapps = (TextView) findViewById(R.id.nameapps);
-        infoapps = (TextView) findViewById(R.id.infoapps);
+        tdate = findViewById(R.id.date);
+        ttime = findViewById(R.id.time);
+        etemail = findViewById(R.id.et_email);
+        etpassword =  findViewById(R.id.et_pw);
+        button_signin =  findViewById(R.id.btn_lg);
+        nameapps =  findViewById(R.id.nameapps);
+        infoapps =  findViewById(R.id.infoapps);
 
         Animation a = AnimationUtils.loadAnimation(this,R.anim.mytransition);
         tdate.setAnimation(a);
