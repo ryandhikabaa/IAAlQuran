@@ -1,4 +1,8 @@
 package com.example.iaal_quran;
+/**
+ *Created : Ryandhika Bintang Abiyyi Kudus
+ *don't try to reupload my project, thanks from me
+ */
 
 public class Constants {
     public final static String BASE_URL = "https://api.banghasan.com/quran/format/json/surat";

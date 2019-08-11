@@ -14,6 +14,10 @@ import com.example.iaal_quran.model.Surah;
 public class DetailActivity extends AppCompatActivity {
     TextView tv_nomor, tv_NS, tv_asma, tv_arti, tv_JmlAyat,tv_TurunSurat,tv_urutan,tv_keterangan, title_surah , title_asma ;
     private Toolbar toolbar;
+    /**
+     *Created : Ryandhika Bintang Abiyyi Kudus
+     *don't try to reupload my project, thanks from me
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

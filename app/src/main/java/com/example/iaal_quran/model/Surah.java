@@ -4,6 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
+/**
+ *Created : Ryandhika Bintang Abiyyi Kudus
+ *don't try to reupload my project, thanks from me
+ */
 
 public class Surah extends RealmObject implements Parcelable{
     private String nomor;

@@ -37,6 +37,10 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
+/**
+ *Created : Ryandhika Bintang Abiyyi Kudus
+ *don't try to reupload my project, thanks from me
+ */
 
 public class AllListActivity extends AppCompatActivity {
 

@@ -15,6 +15,11 @@ import com.example.iaal_quran.R;
 
 import java.text.SimpleDateFormat;
 
+/**
+ *Created : Ryandhika Bintang Abiyyi Kudus
+ *don't try to reupload my project, thanks from me
+ */
+
 public class LoginActivity extends AppCompatActivity {
 
     TextView tdate,ttime,nameapps,infoapps;

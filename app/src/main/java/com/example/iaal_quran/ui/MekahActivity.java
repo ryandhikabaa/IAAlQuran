@@ -42,6 +42,10 @@ public class MekahActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeLayout;
     private Realm realm;
     String data;
+    /**
+     *Created : Ryandhika Bintang Abiyyi Kudus
+     *don't try to reupload my project, thanks from me
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

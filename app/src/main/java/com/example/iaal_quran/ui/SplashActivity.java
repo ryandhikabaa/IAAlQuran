@@ -19,6 +19,10 @@ public class SplashActivity extends AppCompatActivity {
     TextView tdate,ttime,nameapps,infoapps;
     Animation frombottom, fromtop;
     private ProgressDialog mProgress;
+    /**
+     *Created : Ryandhika Bintang Abiyyi Kudus
+     *don't try to reupload my project, thanks from me
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

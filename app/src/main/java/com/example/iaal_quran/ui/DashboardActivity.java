@@ -50,6 +50,10 @@ public class DashboardActivity extends AppCompatActivity {
     private List<Surah> surahList = new ArrayList<>();
     private Realm realm;
     private static final String TAG = AllListActivity.class.getSimpleName();
+    /**
+     *Created : Ryandhika Bintang Abiyyi Kudus
+     *don't try to reupload my project, thanks from me
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

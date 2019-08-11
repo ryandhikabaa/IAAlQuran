@@ -14,6 +14,10 @@ import com.example.iaal_quran.model.Surah;
 import com.example.iaal_quran.ui.DetailActivity;
 
 import java.util.List;
+/**
+ *Created : Ryandhika Bintang Abiyyi Kudus
+ *don't try to reupload my project, thanks from me
+ */
 
 public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 

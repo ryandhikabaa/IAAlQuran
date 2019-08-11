@@ -22,6 +22,10 @@ public class RegisterActivity extends AppCompatActivity {
     Button btn_signup;
     String text_username,text_email, text_pw;
     private static final String MY_PREFS_NAME = "user";
+    /**
+     *Created : Ryandhika Bintang Abiyyi Kudus
+     *don't try to reupload my project, thanks from me
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
