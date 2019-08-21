@@ -71,6 +71,7 @@ public class MekahActivity extends AppCompatActivity {
 
         mProgress.show();
         fetchCustDataFromDb();
+        mProgress.dismiss();
 
 
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

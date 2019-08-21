@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,9 +32,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -83,8 +89,8 @@ public class DashboardActivity extends AppCompatActivity {
             setContentView(R.layout.activity_dashboard);
         }
 
-        tdate = (TextView) findViewById(R.id.date);
-        ttime = (TextView) findViewById(R.id.time);
+        tdate = findViewById(R.id.date);
+        ttime = findViewById(R.id.time);
         tvUsername = findViewById(R.id.tv_username);
         ivLogout = findViewById(R.id.iv_logout);
         c_mekah = findViewById(R.id.card_mekah);
@@ -124,6 +130,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
         };
         t.start();
+
 
         ivLogout.setOnClickListener(new View.OnClickListener() {
             @Override
