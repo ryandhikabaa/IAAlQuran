@@ -46,7 +46,7 @@ import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
 public class DashboardActivity extends AppCompatActivity {
-    TextView tdate,ttime,tvUsername;
+    TextView tdate, ttime, tvUsername;
     private SharedPreferences preferences;
     private ImageView ivLogout;
     private CardView c_mekah, c_madinah, c_all_surah;
@@ -56,9 +56,10 @@ public class DashboardActivity extends AppCompatActivity {
     private List<Surah> surahList = new ArrayList<>();
     private Realm realm;
     private static final String TAG = AllListActivity.class.getSimpleName();
+
     /**
-     *Created : Ryandhika Bintang Abiyyi Kudus
-     *don't try to reupload my project, thanks from me
+     * Created : Ryandhika Bintang Abiyyi Kudus
+     * don't try to reupload my project, thanks from me
      */
 
     @Override
@@ -74,7 +75,7 @@ public class DashboardActivity extends AppCompatActivity {
         if (realm == null)
             realm = Realm.getDefaultInstance();
 
-        if (!isConnected(DashboardActivity.this)){
+        if (!isConnected(DashboardActivity.this)) {
             RealmResults<Surah> surah = realm.where(Surah.class)
                     .findAll();
             if (surah.size() <= 0) {
@@ -82,9 +83,8 @@ public class DashboardActivity extends AppCompatActivity {
             } else {
                 buildDialogDatadone(DashboardActivity.this).show();
             }
-        }
-        else {
-            Toast.makeText(DashboardActivity.this,"Welcome", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(DashboardActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
             fetchCustDataFromDb();
             setContentView(R.layout.activity_dashboard);
         }
@@ -98,10 +98,10 @@ public class DashboardActivity extends AppCompatActivity {
         c_all_surah = findViewById(R.id.card_all_surah);
 
         preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-        String email = preferences .getString ( "email", "");
-        tvUsername.setText (email);
+        String email = preferences.getString("email", "");
+        tvUsername.setText(email);
 
-        Animation a = AnimationUtils.loadAnimation(this,R.anim.mytransition);
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.mytransition);
         tdate.setAnimation(a);
         ttime.setAnimation(a);
 
@@ -145,7 +145,7 @@ public class DashboardActivity extends AppCompatActivity {
                                 editor.clear();
                                 editor.apply();
                                 surahList.clear();
-                                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(i);
                                 finish();
                             }
@@ -189,10 +189,11 @@ public class DashboardActivity extends AppCompatActivity {
             android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
-            if((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting())) return true;
-        else return false;
+            if ((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting()))
+                return true;
+            else return false;
         } else
-        return false;
+            return false;
     }
 
     public AlertDialog.Builder buildDialogDatadone(Context c) {
@@ -223,12 +224,13 @@ public class DashboardActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (TIME_LIMIT + backPressed > System.currentTimeMillis()){
-            super.onBackPressed();;
-        }else {
-            Toast.makeText(getApplicationContext(),"Tekan lagi untuk keluar",Toast.LENGTH_SHORT).show();
+        if (TIME_LIMIT + backPressed > System.currentTimeMillis()) {
+            super.onBackPressed();
+            ;
+        } else {
+            Toast.makeText(getApplicationContext(), "Tekan lagi untuk keluar", Toast.LENGTH_SHORT).show();
         }
-        backPressed =System.currentTimeMillis();
+        backPressed = System.currentTimeMillis();
     }
 
     private void fetchSurahApi() {
@@ -293,16 +295,5 @@ public class DashboardActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e(TAG, "fetchCustDataFromDb: " + e.getLocalizedMessage());
         }
-    }
-
-
-    public void delete(){
-        final RealmResults<Surah> model = realm.where(Surah.class).findAll();
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                model.deleteFromRealm(0);
-            }
-        });
     }
 }

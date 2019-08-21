@@ -17,14 +17,15 @@ import java.text.SimpleDateFormat;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    TextView tdate,ttime,nameapps,infoapps;
+    TextView tdate, ttime, nameapps, infoapps, tvLogin;
     EditText username, email, pw;
     Button btn_signup;
-    String text_username,text_email, text_pw;
+    String text_username, text_email, text_pw;
     private static final String MY_PREFS_NAME = "user";
+
     /**
-     *Created : Ryandhika Bintang Abiyyi Kudus
-     *don't try to reupload my project, thanks from me
+     * Created : Ryandhika Bintang Abiyyi Kudus
+     * don't try to reupload my project, thanks from me
      */
 
     @Override
@@ -32,17 +33,17 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        tdate = (TextView) findViewById(R.id.date);
-        ttime = (TextView) findViewById(R.id.time);
-        TextView tvLogin = findViewById(R.id.tv_login);
+        tdate = findViewById(R.id.date);
+        ttime = findViewById(R.id.time);
+        tvLogin = findViewById(R.id.tv_login);
         username = findViewById(R.id.et_username);
         email = findViewById(R.id.et_email);
         pw = findViewById(R.id.et_pw);
         btn_signup = findViewById(R.id.btn_signup);
-        nameapps = (TextView) findViewById(R.id.nameapps);
-        infoapps = (TextView) findViewById(R.id.infoapps);
+        nameapps = findViewById(R.id.nameapps);
+        infoapps = findViewById(R.id.infoapps);
 
-        Animation a = AnimationUtils.loadAnimation(this,R.anim.mytransition);
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.mytransition);
         tdate.setAnimation(a);
         ttime.setAnimation(a);
         nameapps.setAnimation(a);
@@ -92,14 +93,14 @@ public class RegisterActivity extends AppCompatActivity {
                 text_email = email.getText().toString();
                 text_pw = pw.getText().toString();
                 text_username = username.getText().toString();
-                if (text_email.length()==0) {
+                if (text_email.length() == 0) {
                     email.setError("Enter email");
-                } else if (text_pw.length()==0) {
+                } else if (text_pw.length() == 0) {
                     pw.setError("Enter password");
-                }else if (text_username.length()==0){
+                } else if (text_username.length() == 0) {
                     username.setError("Enter username");
-                }else {
-                    SharedPreferences sharedPreferences = getSharedPreferences("user",MODE_PRIVATE);
+                } else {
+                    SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("username", username.getText().toString());
                     editor.putString("email", email.getText().toString());

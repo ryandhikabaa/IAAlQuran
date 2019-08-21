@@ -42,9 +42,10 @@ public class MekahActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeLayout;
     private Realm realm;
     String data;
+
     /**
-     *Created : Ryandhika Bintang Abiyyi Kudus
-     *don't try to reupload my project, thanks from me
+     * Created : Ryandhika Bintang Abiyyi Kudus
+     * don't try to reupload my project, thanks from me
      */
 
     @Override
@@ -73,18 +74,14 @@ public class MekahActivity extends AppCompatActivity {
         fetchCustDataFromDb();
         mProgress.dismiss();
 
-
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Your code here
                 surahList.clear();
                 fetchCustDataFromDb();
-                // To keep animation for 4 seconds
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        // Stop animation (This will be after 3 seconds)
                         swipeLayout.setRefreshing(false);
                     }
                 }, 1500);

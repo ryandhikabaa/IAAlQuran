@@ -12,39 +12,36 @@ import com.example.iaal_quran.R;
 import com.example.iaal_quran.model.Surah;
 
 public class DetailActivity extends AppCompatActivity {
-    TextView tv_nomor, tv_NS, tv_asma, tv_arti, tv_JmlAyat,tv_TurunSurat,tv_urutan,tv_keterangan, title_surah , title_asma ;
+    TextView tv_nomor, tv_NS, tv_asma, tv_arti, tv_JmlAyat, tv_TurunSurat, tv_urutan, tv_keterangan, title_surah, title_asma;
     private Toolbar toolbar;
+
     /**
-     *Created : Ryandhika Bintang Abiyyi Kudus
-     *don't try to reupload my project, thanks from me
+     * Created : Ryandhika Bintang Abiyyi Kudus
+     * don't try to reupload my project, thanks from me
      */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-//        toolbar = findViewById(R.id.tl_detail);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setTitle("Detail Surah ");
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingtoolbar_id);
         collapsingToolbarLayout.setTitleEnabled(true);
 
-        //inisialisasi
-        title_surah =  findViewById(R.id.title_surah);
-        title_asma =  findViewById(R.id.title_asma);
-        tv_nomor =  findViewById(R.id.tv_nomor);
-        tv_NS =  findViewById(R.id.tv_surat);
-        tv_asma =  findViewById(R.id.tv_asma);
-        tv_arti =  findViewById(R.id.tv_arti);
-        tv_JmlAyat =  findViewById(R.id.tv_jumlah_ayat);
-        tv_TurunSurat =  findViewById(R.id.tv_turun_surat);
-        tv_urutan =  findViewById(R.id.tv_urutanwahyu);
-        tv_keterangan =  findViewById(R.id.tv_keterangan);
+        title_surah = findViewById(R.id.title_surah);
+        title_asma = findViewById(R.id.title_asma);
+        tv_nomor = findViewById(R.id.tv_nomor);
+        tv_NS = findViewById(R.id.tv_surat);
+        tv_asma = findViewById(R.id.tv_asma);
+        tv_arti = findViewById(R.id.tv_arti);
+        tv_JmlAyat = findViewById(R.id.tv_jumlah_ayat);
+        tv_TurunSurat = findViewById(R.id.tv_turun_surat);
+        tv_urutan = findViewById(R.id.tv_urutanwahyu);
+        tv_keterangan = findViewById(R.id.tv_keterangan);
 
         final Surah surah = getIntent().getExtras().getParcelable("hasil");
 
-        if(surah != null){
+        if (surah != null) {
             String nomor = surah.getNomor();
             String nama = surah.getNama();
             String asma = surah.getAsma();

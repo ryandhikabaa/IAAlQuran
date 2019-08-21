@@ -16,12 +16,13 @@ import java.text.SimpleDateFormat;
 
 public class SplashActivity extends AppCompatActivity {
 
-    TextView tdate,ttime,nameapps,infoapps;
+    TextView tdate, ttime, nameapps, infoapps;
     Animation frombottom, fromtop;
     private ProgressDialog mProgress;
+
     /**
-     *Created : Ryandhika Bintang Abiyyi Kudus
-     *don't try to reupload my project, thanks from me
+     * Created : Ryandhika Bintang Abiyyi Kudus
+     * don't try to reupload my project, thanks from me
      */
 
     @Override
@@ -29,10 +30,10 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        tdate = (TextView) findViewById(R.id.date);
-        ttime = (TextView) findViewById(R.id.time);
-        nameapps = (TextView) findViewById(R.id.nameapps);
-        infoapps = (TextView) findViewById(R.id.infoapps);
+        tdate = findViewById(R.id.date);
+        ttime = findViewById(R.id.time);
+        nameapps = findViewById(R.id.nameapps);
+        infoapps = findViewById(R.id.infoapps);
 
         mProgress = new ProgressDialog(this);
         mProgress.setTitle("Processing...");
@@ -40,14 +41,11 @@ public class SplashActivity extends AppCompatActivity {
         mProgress.setCancelable(false);
         mProgress.setIndeterminate(true);
 
-
-        Animation animation = AnimationUtils.loadAnimation(this,R.anim.fromtop);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fromtop);
         tdate.setAnimation(animation);
         ttime.setAnimation(animation);
         nameapps.setAnimation(animation);
         infoapps.setAnimation(animation);
-
-
 
         Thread t = new Thread() {
             @Override
@@ -84,21 +82,17 @@ public class SplashActivity extends AppCompatActivity {
 
                 String username = prefs.getString("email", "");
                 String name = prefs.getString("user", "");
-                if (username == ""){
-                    //login
+                if (username == "") {
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                     finish();
-                }
-                else {
-                    //mainmenu
-
+                } else {
                     Intent intent1 = new Intent(getApplicationContext(), DashboardActivity.class);
                     startActivity(intent1);
                     finish();
                 }
 
             }
-        },2000);
+        }, 2000);
     }
 }

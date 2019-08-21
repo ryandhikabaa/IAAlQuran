@@ -16,13 +16,13 @@ import com.example.iaal_quran.R;
 import java.text.SimpleDateFormat;
 
 /**
- *Created : Ryandhika Bintang Abiyyi Kudus
- *don't try to reupload my project, thanks from me
+ * Created : Ryandhika Bintang Abiyyi Kudus
+ * don't try to reupload my project, thanks from me
  */
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView tdate,ttime,nameapps,infoapps;
+    TextView tdate, ttime, nameapps, infoapps;
     EditText etemail, etpassword;
     Button button_signin;
     String text_email, text_pw;
@@ -35,12 +35,12 @@ public class LoginActivity extends AppCompatActivity {
         tdate = findViewById(R.id.date);
         ttime = findViewById(R.id.time);
         etemail = findViewById(R.id.et_email);
-        etpassword =  findViewById(R.id.et_pw);
-        button_signin =  findViewById(R.id.btn_lg);
-        nameapps =  findViewById(R.id.nameapps);
-        infoapps =  findViewById(R.id.infoapps);
+        etpassword = findViewById(R.id.et_pw);
+        button_signin = findViewById(R.id.btn_lg);
+        nameapps = findViewById(R.id.nameapps);
+        infoapps = findViewById(R.id.infoapps);
 
-        Animation a = AnimationUtils.loadAnimation(this,R.anim.mytransition);
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.mytransition);
         tdate.setAnimation(a);
         ttime.setAnimation(a);
         nameapps.setAnimation(a);
@@ -88,12 +88,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 text_email = etemail.getText().toString();
                 text_pw = etpassword.getText().toString();
-                if (text_email.length()==0) {
+                if (text_email.length() == 0) {
                     etemail.setError("Enter email");
-                } else if (text_pw.length()==0) {
+                } else if (text_pw.length() == 0) {
                     etpassword.setError("Enter password");
-                }else {
-                    SharedPreferences sharedPreferences = getSharedPreferences("user",MODE_PRIVATE);
+                } else {
+                    SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("email", etemail.getText().toString());
                     editor.putString("pw", etpassword.getText().toString());
